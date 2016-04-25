@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- ����WebӦ�������ļ��ĸ�Ԫ�أ���ָ�������ļ���Schema��Ϣ -->
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+	http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+
+	<!-- ָ��Spring�����ļ���λ�� -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name> 
+		<param-value>/WEB-INF/applicationContext.xml,
+			/WEB-INF/daoContext.xml</param-value>
+	</context-param>
+
+	<!-- ����WebӦ������ʱ�����Spring���� -->
+	<listener> 
+		<listener-class>org.springframework.web.context.ContextLoaderListener
+		</listener-class> 
+	</listener>
+
+	<!-- ����StrutsPrepareFilter������ -->
+	<filter>
+		<filter-name>struts-prepare</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareFilter</filter-class>
+	</filter>
+	<!-- ����SiteMesh�ĺ��Ĺ����� -->
+	<filter>
+		<filter-name>sitemesh</filter-name>
+		<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+	</filter>
+	<!-- ����StrutsExecuteFilter������ -->
+	<filter>
+		<filter-name>struts-execute</filter-name>
+		<filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsExecuteFilter</filter-class>
+	</filter>
+	
+	<!-- 过滤编码 -->
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+		<param-name>encoding</param-name>
+		<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	
+	
+	
+	<!-- ����������� -->
+	<!-- ���ڵ�һλ�Ĺ������ǣ�StrutsPrepareFilter������ -->
+	<filter-mapping>
+		<filter-name>struts-prepare</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- ���ڵڶ�λ�Ĺ������ǣ�SiteMesh�ĺ��Ĺ����� -->
+	<filter-mapping>
+		<filter-name>sitemesh</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- ���ڵ���λ�Ĺ������ǣ�StrutsExecuteFilter������ -->
+	<filter-mapping>
+		<filter-name>struts-execute</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	</web-app>
